@@ -1,8 +1,10 @@
 # Ask Me Anything Server
 
-The server part for **Ask Me Anything**.
+The server side for **Ask Me Anything**.
 
-Ask Me Anything Server provides a RESTful API for the client part and handles data with [MongoDB](https://www.mongodb.com).
+Ask Me Anything Server provides a RESTful API for [Ask Me Anything Client](https://github.com/howerhe/ask-me-anything-client). It handles routes with [Express](https://expressjs.com/) and stores data with [MongoDB](https://www.mongodb.com).
+
+[Demo on Heroku](http://ask-me-anything-server.herokuapp.com/questions). Please don't abuse.
 
 ## Data structure
 
@@ -23,14 +25,14 @@ Ask Me Anything Server provides a RESTful API for the client part and handles da
 
 ## Methods supported
 
-### `/questions`
+### /questions
 
-`GET`:
+GET:
 
 - get all entries when `isAdmin = true`
 - cannot get the entries with `visibility: false` when `isAdmin = false`
 
-`POST`
+POST:
 
 - post a new entry with `question.content` provided
 
@@ -38,19 +40,19 @@ Ask Me Anything Server provides a RESTful API for the client part and handles da
 
 - no entry will be posted to the database if `question.content` is empty
 
-`DELETE`
+DELETE:
 
 - delete all entries when `isAdmin = true`
 
-### `/questions/:questionId`
+### /questions/:questionId
 
-`GET`
+GET:
 
 - get an entry with `_id` matching `:questionId` when `isAdmin = true`
 
 - cannot get the entry with `visibility: false` when `isAdmin = false`
 
-`PUT`:
+PUT:
 
 - replace an entry with `_id` matching `:questionId` when `isAdmin = true`
 
@@ -60,7 +62,7 @@ Ask Me Anything Server provides a RESTful API for the client part and handles da
 
 - `visibility` is set to `false` if not provided
 
-`PATCH`
+PATCH:
 
 - update an entry with `_id` matching `:questionId` when `isAdmin = true`
 
@@ -68,7 +70,7 @@ Ask Me Anything Server provides a RESTful API for the client part and handles da
 
 - `answer.date` is calculated on server if `answer.content` is updated
 
-`DELETE`
+DELETE:
 
 - delete an entry with `_id` matching `:questionId` when `isAdmin = true`
 
@@ -79,6 +81,8 @@ Ask Me Anything Server provides a RESTful API for the client part and handles da
 A `.env` file is needed to provide database information and port information.
 
 ## TODO
+
+- [ ] Filter out unnecessary fields when returning data.
 
 - [ ] Add authentications to filter out robots.
 
